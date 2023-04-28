@@ -1,94 +1,99 @@
 <template>
-  <div id="app">
-    <Header/>
-    <router-view />
-    <Footer/>
-    <Popup/>
+  <div id="app" ref="app">
+    <Header @click-inner-link="onClickInnerLink"></Header>
+    <router-view></router-view>
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
-import TodoList from "@/components/TodoList";
-import AddTodo from "@/components/AddTodo";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import Block from "@/components/Block";
-import Popup from "@/components/Popup"
+import Header from "@/components/page/Header.vue";
+import Footer from "@/components/page/Footer.vue";
+
 export default {
   name: "App",
-  data() {
-    return {
-    };
-  },
   components: {
-    TodoList,
-    AddTodo,
     Header,
     Footer,
-    Block,
-    Popup
+  },
+  methods: {
+    onClickInnerLink() {
+      console.log(this.$refs);
+    },
   },
 };
 </script>
 
-<style>
-*{
-    margin: 0;
-    padding: 0;
+<style lang="scss">
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,100&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: content-box;
 }
-::-webkit-scrollbar{
-    display: none;
+html {
+  height: 100%;
+  width: 100%;
 }
-body{
-    width: 100%;
-    height: 100%;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 16px;
-    padding-right: 0px;
+
+#app {
+  height: 100%;
+  width: 100%;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+body {
+  width: 100%;
+  height: 100%;
+  font-family: "Roboto", sans-serif;
 }
 .dark {
-    background-color: #000000;
-    color: #ffffff;
-}
-.dark .nav__link{
-    color: #ffffff;
-}
-.dark .nav__link_ext{
-    color: #ffffff;
-}
-.dark .nav {
+  background-color: #43413f;
+  color: #ffffff;
+  .nav {
     background-color: #322f2b;
-}
-.dark .nav__item:hover {
-    background-color: #777777;
-}
-.dark .block:nth-child(2n+1){
-    background-color: #777777;
+    &-list-item {
+      & :hover {
+        background-color: #777777;
+      }
+      &-active {
+        background-color: #777777;
+      }
+    }
+    &-link {
+      color: #ffffff;
+      &-ext {
+        color: #ffffff;
+      }
+    }
+  }
+  .block {
+    background-color: #43413f;
     color: #ffffff;
-}
-.dark .block {
-    background-color:#43413f;
-    color: #ffffff;
-}
-.dark .footer {
-    color: #ffffff;
-    background-color: #322f2b;
-}
-.dark .card {
-    background-color: #000000;
-    border-width: 5px;
-    border: #ffffff;
-}
-.dark .container__card {
+    &:nth-child(2n + 1) {
+      background-color: #777777;
+      color: #ffffff;
+    }
+  }
+  .container-card {
     border-width: 5px;
     border: #ffffff;
     border-style: solid;
-    background-color:#322f2b;
-}
-.dark .container__prodcard:hover > .card {
-    background-color:#322f2b;
-}
-.dark .nav__item_active {
-    background-color:#777777;
+    background-color: #322f2b;
+    & > .card {
+      background-color: #322f2b;
+      border-width: 5px;
+      border: #ffffff;
+    }
+  }
+
+  .container-card:hover > .card {
+    background-color: #000000;
+  }
+  .footer {
+    color: #ffffff;
+    background-color: #322f2b;
+  }
 }
 </style>
